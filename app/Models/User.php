@@ -42,4 +42,14 @@ class User extends Authenticatable
         'email_verified_at' => 'datetime',
         'password' => 'hashed',
     ];
+
+    public function reviews()
+    {
+        //UserテーブルがrReviewテーブルに対して出来ることを記載する
+        //ここでは1人のユーザーは複数レビューを投稿できる事を表現している
+
+        return $this->hasMany(Review::class);
+    }
+
+    
 }
