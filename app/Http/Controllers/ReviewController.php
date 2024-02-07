@@ -38,15 +38,25 @@ class ReviewController extends Controller
     {
         $review = $request->input("content");
 
-        Review::create([
-            "user_id" => Auth::id(),
-            "content" => $request->input("content"),
-            "rating" => $request->input("rating"),
-            "media_type" => $request->input("media_type"),
-            "media_id" => $request->input("media_id")
+        $validateData = $request->validate([
+            "content" => 'required|string',
+            "rating" => 'required|integer',
+            "media_type" => 'required|string',
+            "media_id" => 'required|integer',
         ]);
 
 
+        $review = Review::create([
+            "user_id" => Auth::id(),
+            //"user_id" => 19,
+            "content" => $validateData["content"],
+            "rating" => $validateData["rating"],
+            "media_type" => $validateData["media_type"],
+            "media_id" => $validateData["media_id"],
+        ]);
+
+        /*登録されているuserテーブルのidとReviewのuser_idカラムを紐づける */
+        $review->load('user');
         return response()->json($review);
     }
 

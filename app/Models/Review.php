@@ -9,7 +9,7 @@ class Review extends Model
 {
     use HasFactory;
 
-    protected $fillab = [
+    protected $fillable = [
         "content",
         "rating",
         "media_id",
