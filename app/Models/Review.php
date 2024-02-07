@@ -9,6 +9,14 @@ class Review extends Model
 {
     use HasFactory;
 
+    protected $fillab = [
+        "content",
+        "rating",
+        "media_id",
+        "media_type", 
+        "user_id",    
+    ];
+
     public function user()
     {
         /*ここでの記述はレビュー(Review)は1人のユーザー(user)が投稿している
