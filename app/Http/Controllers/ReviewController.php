@@ -48,7 +48,7 @@ class ReviewController extends Controller
 
         $review = Review::create([
             "user_id" => Auth::id(),
-            //"user_id" => 19,
+            //"user_id" => 1,
             "content" => $validateData["content"],
             "rating" => $validateData["rating"],
             "media_type" => $validateData["media_type"],
