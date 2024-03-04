@@ -14,5 +14,8 @@ class Comment extends Model
         return $this->belongsTo(User::class);
     }
 
-    
+    public function review()
+    {
+        return $this->belongsTo(Review::class);
+    }
 }
