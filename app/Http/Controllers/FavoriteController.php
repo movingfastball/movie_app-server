@@ -2,12 +2,23 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Controllers\Controller;
 use App\Models\Favorite;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 
 class FavoriteController extends Controller
 {
+
+    public function index()
+    {
+        $api_key = config('services.tmdb.api_key');
+        $user = Auth::user();
+        $favorites = $user->favorites;
+        return response()->json($favorites);
+    }
+
+
     public function toggleFavorite(Request $request) 
     {
         $validateData = $request->validate([
