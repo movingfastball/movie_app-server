@@ -35,4 +35,19 @@ class FavoriteController extends Controller
             return response()->json(["status" => "added"]);
         }
     }
+
+    public function checkFavoriteStatus(Request $request)
+    {
+        $validateData = $request->validate([
+            "media_type" => 'required|string',
+            "media_id" => 'required|integer',
+        ]);
+
+        $isFavorite = Favorite::where('user_id', Auth::id())
+        ->where('media_type', $validateData['media_type'])
+        ->where('media_id', $validateData['media_id'])
+        ->exists();
+
+        return response()->json($isFavorite);
+    }
 }

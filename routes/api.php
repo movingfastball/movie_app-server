@@ -34,3 +34,5 @@ Route::put('/comments/{comment}',[CommentController::class, 'update']);
 
 //お気に入り機能
 Route::post('/favorites',[FavoriteController::class, 'toggleFavorite']);
+
+Route::get('/favorites/status',[FavoriteController::class, 'checkFavoriteStatus']);
